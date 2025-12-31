@@ -64,23 +64,10 @@ async def main():
         },
         handler=lambda x: {"result": f"Web search for: {x.get('query', '')}"},
     )
-
-    orch.register_tool(
-        name="route_to_research_agent",
-        description="Delegate research to the research agent specialist",
-        input_schema={
-            "type": "object",
-            "properties": {
-                "request": {"type": "string", "description": "Research request"}
-            },
-            "required": ["request"]
-        },
-        handler=lambda x: {},
-        tool_type="route_to",
-    )
+    # Note: route_to_research_agent is auto-registered when research_agent is created
 
     print("  - search_web")
-    print("  - route_to_research_agent")
+    print("  - route_to_research_agent (auto-registered)")
     print()
 
     # Ambiguous query that should trigger ask_master
